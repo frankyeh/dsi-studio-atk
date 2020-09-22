@@ -10,8 +10,11 @@ dwi=$(jq -r .dwi config.json)
 bval=$(jq -r .bvals config.json)
 bvec=$(jq -r .bvecs config.json)
 
-echo "dwi=${dwi}"
-echo "bval=${bval}"
-echo "bvec=${bvec}"
+# create symbolic link here
+dwi_base_name=${dwi##*/}
+ln -s ${dwi} ${dwi_base_name}
 
-time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi} --bval=${bval} --bvec=${bvec}
+
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi_base_name} --bval=${bval} --bvec=${bvec}
+
+
