@@ -21,5 +21,8 @@ time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --
 mkdir tt
 mv *tt.gz tt
 
+mkdir fib
+mv *fib.gz fib
+
 mkdir stat
 mv *.txt stat
