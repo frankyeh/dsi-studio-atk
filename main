@@ -10,7 +10,7 @@ bval=$(jq -r .bvals config.json)
 bvec=$(jq -r .bvecs config.json)
 
 echo "dwi=${dwi}"
-echo "bval=${bvals}"
-echo "bvec=${bvecs}"
+echo "bval=${bval}"
+echo "bvec=${bvec}"
 
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi} --bval=${bval} --bvec=${bvec}
