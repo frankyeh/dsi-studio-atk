@@ -25,6 +25,7 @@ fi
 
 # if FIB file is assigned use it instead
 fib=$(jq -r .fib config.json)
+echo "$fib"
 if [ ! -z "$fib" ]
 then 
   source=${fib##*/}
