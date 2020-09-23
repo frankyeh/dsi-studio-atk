@@ -19,8 +19,12 @@ ln -s ${dwi} ${dwi_base_name}
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi_base_name} --bval=${bval} --bvec=${bvec}
 
 # move files
-mkdir tt
-mv *tt.gz tt
+mkdir tts
+mv *tt.gz tts
+cd tts
+mkdir tts
+mv *tt.gz tts
+cd.. 
 
 mkdir fib
 mv *fib.gz fib
