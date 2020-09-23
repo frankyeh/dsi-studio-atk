@@ -35,6 +35,7 @@ mv *.tt.gz tts/tts
 
 mkdir -p fib
 mv *.fib.gz fib/fib.gz
+mv *.fib.gz.hcp1065.inv.mapping.gz fib/fib.gz.hcp1065.inv.mapping.gz
 
 mkdir -p stat/tractmeasures
 mv *.txt stat/tractmeasures
