@@ -9,14 +9,31 @@ set -e
 dwi=$(jq -r .dwi config.json)
 bval=$(jq -r .bvals config.json)
 bvec=$(jq -r .bvecs config.json)
-
 # create symbolic link here
 dwi_base_name=${dwi##*/}
 rm -f ${dwi_base_name}
 ln -s ${dwi} ${dwi_base_name}
 
 
-time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi_base_name} --bval=${bval} --bvec=${bvec}
+# parameters
+resolution=$(jq -r .resolution config.json)
+gqi_length_ratio=$(jq -r .gqi_length_ratio config.json)
+tolerance=$(jq -r .tolerance config.json)
+
+if [ ! -z "$resolution" ]
+then
+    resolution="--interpolation=${resolution}"
+fi
+if [ ! -z "$gqi_length_ratio" ]
+then
+    gqi_length_ratio="--length_ratio=${gqi_length_ratio}"
+fi
+if [ ! -z "$tolerance" ]
+then
+    tolerance="--tolerance=${tolerance}"
+fi
+
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${dwi_base_name} --bval=${bval} --bvec=${bvec} ${resolution} ${gqi_length_ratio} ${tolerance}
 
 # move files
 mkdir -p tts/tts
