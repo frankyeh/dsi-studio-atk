@@ -22,9 +22,10 @@ time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --
 mkdir -p tts/tts
 mv *.tt.gz tts/tts
 
-mkdir fib
-mv *fib.gz fib
-mv *mapping.gz fib
+mkdir -p fib
+mv *.fib.gz fib/fib.gz
+mv *.fib.gz.hcp1065.inv.mapping.gz fib/fib.gz.hcp1065.inv.mapping.gz
+mv *.fib.gz.hcp1065.mapping.gz fib/fib.gz.hcp1065.mapping.gz
 
 mkdir stat
 mv *.txt stat
