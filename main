@@ -15,7 +15,7 @@ ln -sf ${dwi} ${source}
 
 # if SRC file is assigned use it instead
 src=$(jq -r .src config.json)
-if [ ! -z "$src" ]
+if [[ [! -z "$src"] && "$src" -ne "null" ]]
 then 
   source=${src##*/}
   ln -sf ${src} ${source}
@@ -26,7 +26,7 @@ fi
 # if FIB file is assigned use it instead
 fib=$(jq -r .fib config.json)
 echo "$fib"
-if [[ ! -z "$fib" && "$fib" -ne "null" ]]
+if [[ [! -z "$fib"] && "$fib" -ne "null" ]]
 then 
   source=${fib##*/}
   ln -sf ${fib} ${source}
