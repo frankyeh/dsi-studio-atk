@@ -56,10 +56,10 @@ if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 echo "source=${source}"
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${resolution} ${gqi_length_ratio} ${tolerance} ${target}
 
+report=$( cat report.txt )
+
 # generate report
-echo "{\"brainlife\": [{\"type\": \"info\", \"msg\": \"" > product.json
-cat report.txt >> product.json
-echo "\"},]}" >> product.json
+echo "{\"brainlife\": [{\"type\": \"info\", \"msg\": \" ${report}\"},]}" > product.json
 
 # move files
 mkdir -p tts/tts
