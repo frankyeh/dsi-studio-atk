@@ -54,7 +54,12 @@ if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
 if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 
 echo "source=${source}"
-time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} ${bval} ${bvec} ${resolution} ${gqi_length_ratio} ${tolerance} ${target}
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${resolution} ${gqi_length_ratio} ${tolerance} ${target}
+
+# generate report
+echo "{\"brainlife\": [{\"type\": \"method\", \"msg\": \"" > product.json
+cat report.txt >> product.json
+echo "\"},]}" >> product.json
 
 # move files
 mkdir -p tts/tts
