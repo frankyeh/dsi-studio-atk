@@ -59,7 +59,7 @@ time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --
 report=$( cat report.txt )
 
 # generate report
-echo "{\"brainlife\": [{\"type\": \"info\", \"msg\": \" ${report}\"},]}" > product.json
+echo "{ \"meta\": {\"method\": "${report}\"} }" > product.json
 
 # move files
 mkdir -p tts/tts
