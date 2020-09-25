@@ -6,9 +6,6 @@
 
 set -e  
 
-# for re-run, remove mapping to avoid freeze
-rm -f dwi.nii.gz.gqi.1.25.fib.gz.hcp1065.inv.mapping.gz
-
 dwi=$(jq -r .dwi config.json)
 bval=$(jq -r .bvals config.json)
 bvec=$(jq -r .bvecs config.json)
