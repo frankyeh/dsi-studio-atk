@@ -55,7 +55,9 @@ then
   other=""
 fi
 
+echo "call dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${dwi_opposite} ${target} ${other} "
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${dwi_opposite} ${target} ${other}
+echo "dsi_studio processing completed"
 
 report=$( cat report.txt )
 
