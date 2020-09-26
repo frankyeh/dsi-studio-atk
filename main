@@ -38,7 +38,8 @@ then
   fi
 fi
 
-
+dwi_opposite=$(jq -r .dwi_opposite config.json)
+if [ -f $dwi_opposite ]; then dwi_opposite="--other_src=${dwi_opposite}"; else dwi_opposite=""; fi
 
 # prepare parameters
 resolution=$(jq -r .resolution config.json)
@@ -54,7 +55,7 @@ if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
 if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 
 echo "source=${source}"
-time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${resolution} ${gqi_length_ratio} ${tolerance} ${target}
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${resolution} ${dwi_opposite} ${gqi_length_ratio} ${tolerance} ${target}
 
 report=$( cat report.txt )
 
