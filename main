@@ -41,13 +41,19 @@ fi
 dwi_opposite=$(jq -r .dwi_opposite config.json)
 if [ -f $dwi_opposite ]; then dwi_opposite="--other_src=${dwi_opposite}"; else dwi_opposite=""; fi
 
-# prepare parameters
-other=$(jq -r .other config.json)
 target=$(jq -r .target config.json)
 
 if [ ! -z "$target" ]; then target="--track_id=${target}"; fi
 if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
 if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
+
+# prepare parameters
+other=$(jq -r .other config.json)
+if [[ ${other:0:1} != '-' ]]
+then 
+  echo "other parameter not used"
+  other=""
+fi
 
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${dwi_opposite} ${target} ${other}
 
