@@ -54,7 +54,7 @@ if [ ! -z "$target" ]; then target="--track_id=${target}"; fi
 if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
 if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 
-echo "source=${source}"
+
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${resolution} ${dwi_opposite} ${gqi_length_ratio} ${tolerance} ${target}
 
 report=$( cat report.txt )
