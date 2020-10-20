@@ -28,7 +28,7 @@ then
 fi
 
 echo "call dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${target} ${other} "
-time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt ${bval} ${bvec} ${target} ${other}
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt --flip_by=1 ${bval} ${bvec} ${target} ${other}
 echo "dsi_studio processing completed"
 
 report=$( cat report.txt )
