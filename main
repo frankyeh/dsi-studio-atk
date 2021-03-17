@@ -39,7 +39,7 @@ echo "{ \"meta\": {\"method\": \"${report}\"}, \"brainlife\": [ {\"type\": \"inf
        
 # move files
 mkdir -p tts/tts
-mv *.tt.gz tts/tts
+mv **/*.tt.gz tts/tts
 
 if [ ! -f "$fib" ]
 then
@@ -49,4 +49,4 @@ then
 fi
 
 mkdir -p stat/tractmeasures
-mv *.txt stat/tractmeasures
+mv **/*.txt stat/tractmeasures
