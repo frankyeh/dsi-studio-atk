@@ -31,10 +31,9 @@ echo "call dsi_studio --action=atk --source=${source} --report=report.txt ${bval
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=atk --source=${source} --report=report.txt --flip_by=1 ${bval} ${bvec} ${target} ${other}
 echo "dsi_studio processing completed"
 
-report=$( cat report.txt )
-
+# report=$( cat report.txt )
 # generate report
-echo "{ \"meta\": {\"method\": \"${report}\"}, \"brainlife\": [ {\"type\": \"info\", \"msg\": \"${report}\"} ] }" > product.json
+# echo "{ \"meta\": {\"method\": \"${report}\"}, \"brainlife\": [ {\"type\": \"info\", \"msg\": \"${report}\"} ] }" > product.json
 
        
 # move files
